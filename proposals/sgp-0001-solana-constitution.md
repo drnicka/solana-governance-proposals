@@ -208,7 +208,7 @@ The Solana Constitution outlines the principles and operational guidelines for n
 | Proposal Submission Floor | 100,000 SOL active stake at the submitting validator's vote account |
 | Quorum | One-third (1/3) of network stake (`For + Against + Abstain`) |
 | Supermajority Threshold | Two-thirds (2/3) of the participating quorum (`For + Against + Abstain`) |
-| Support Window | Maximum number of epochs to gather sponsorship before the proposal expires |
+| Support Window | 7 Epochs (maximum window to gather sponsorship before the proposal expires) |
 | Review Period | 7 Epochs |
 | NCN Snapshot Period | 1 Epoch |
 | Voting Period | 3 Epochs |
@@ -274,7 +274,7 @@ Who and what is affected — validators, delegators, application developers, end
   - `discussion_epochs = 7` (the Review Period)
   - `voting_epochs = 3`
   - `min_proposal_stake_lamports = 100_000_000_000_000` (100,000 SOL)
-  - `max_support_epochs` (the support window; see Article VI)
+  - `max_support_epochs = 7` (the support window)
 - **NCN snapshot infrastructure** operational such that one full epoch
   between the Review Period and the Voting Period can produce the canonical
   stake snapshot.
