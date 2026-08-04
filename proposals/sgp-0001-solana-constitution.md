@@ -17,13 +17,13 @@ No future technical work is required to action this SGP. Work on `svmgov` V1.0
 — the on-chain program implementing proposal creation, support signaling,
 snapshot-based weighted voting and delegator vote overrides —
 was completed by **Turbine**, **ExoTech**, **Jito**, and the **Solana
-Foundation**. The program is deployed and operational. SGP-1 does not propose
+Foundation**. The program is deployed and operational. SGP-0001 does not propose
 new code, schemas, or runtime changes.
 
 ## Financial Sponsor
 
 Development of `svmgov` V1.0 is complete and was supported by the **Solana
-Foundation**. SGP-1 does not request new funding.
+Foundation**. SGP-0001 does not request new funding.
 
 ## Related SIMDs and SGPs
 
@@ -32,7 +32,7 @@ Foundation**. SGP-1 does not request new funding.
   preserves SIMD-001's optimistic-passage model unless a SIMD is elevated to
   an SGP via the procedure in Constitution Art. II.4.
 
-No prior SGP exists; this is SGP-1.
+No prior SGP exists; this is SGP-0001.
 
 ## Motivation
 
@@ -101,7 +101,7 @@ The Solana Constitution outlines the principles and operational guidelines for n
 
    2. Authors signal a "Final Draft" status using the appropriate tag in the repo, indicating that it is ready for a validator to create the on-chain draft proposal.
 
-   3. A validator must create the proposal. The submitting validator must hold at least **100,000 SOL** of active stake at their vote account at the time of on-chain proposal creation. This minimum stake exists to prevent spam and align the proposer with material network exposure. Once created, the proposal is eligible for validators to signal that it should advance to a vote. Once the draft SGP has exceeded the Proposal Sponsor Threshold, it becomes an official SGP, and the Review Period is triggered.
+   3. A validator must create the proposal. The submitting validator must hold at least **100,000 SOL** of active stake at their vote account at the time of on-chain proposal creation. This minimum stake exists to prevent spam and align the proposer with material network exposure. Once created, the proposal is eligible for validators to signal that it should advance to a vote. Validators may signal support across multiple epochs within a bounded support window; each new signal re-measures the supporting stake at the current epoch. If the Proposal Sponsor Threshold is not reached before the support window elapses, the draft expires and must be re-created. Once the draft SGP has exceeded the Proposal Sponsor Threshold, it becomes an official SGP, and the Review Period is triggered.
 
 4. **SIMD to SGP Elevation** – All SIMDs will pass optimistically, ensuring rapid development paths, *unless* a sufficient amount of stake (the Proposal Sponsor Threshold) signals that the SIMD or a set of related SIMDs is sufficiently systemic or contentious, in which case a conversion from SIMD to SGP will be triggered and will be scheduled for full network vote. To elevate a SIMD to SGP, the following sequence must be completed:
 
@@ -208,6 +208,7 @@ The Solana Constitution outlines the principles and operational guidelines for n
 | Proposal Submission Floor | 100,000 SOL active stake at the submitting validator's vote account |
 | Quorum | One-third (1/3) of network stake (`For + Against + Abstain`) |
 | Supermajority Threshold | Two-thirds (2/3) of the participating quorum (`For + Against + Abstain`) |
+| Support Window | Maximum number of epochs to gather sponsorship before the proposal expires |
 | Review Period | 7 Epochs |
 | NCN Snapshot Period | 1 Epoch |
 | Voting Period | 3 Epochs |
@@ -273,6 +274,7 @@ Who and what is affected — validators, delegators, application developers, end
   - `discussion_epochs = 7` (the Review Period)
   - `voting_epochs = 3`
   - `min_proposal_stake_lamports = 100_000_000_000_000` (100,000 SOL)
+  - `max_support_epochs` (the support window; see Article VI)
 - **NCN snapshot infrastructure** operational such that one full epoch
   between the Review Period and the Voting Period can produce the canonical
   stake snapshot.
@@ -290,7 +292,7 @@ These dependencies are met at the time this SGP is filed.
   SIMDs to SGPs, casting block or split votes, and interpreting quorum
   outcomes (Constitution Art. II–IV).
 - **Delegators** gain explicit ratified rules for vote override, including
-  before, after, or in the absence of validator turnout (Art. III.1.ii).
+  before, after, or in the absence of validator turnout (Art. III.1.2).
 - **SIMD authors** see no change in technical workflow, but gain a clear
   escalation path if a SIMD is elevated to an SGP (Art. II.4).
 - **Maintainers** of the SGP and SIMD repositories gain a constitutional
@@ -307,15 +309,15 @@ These dependencies are met at the time this SGP is filed.
   outcome semantics (Art. IV.7, Art. IV.8): a quorum miss does not block
   development, it leaves the proposal as a non-mandate.
 - **Maintainer control** — editorial control concentrates some authority.
-  Mitigated by Art. III.3.iii requiring published justifications for systemic
+  Mitigated by Art. III.3.3 requiring published justifications for systemic
   classification decisions, and by the network's ability to amend Art. III
   via SGP.
 
 ### Open Questions
 
 - **Future amendments and voting system development** — a working draft of further refinements exists, but
-  is not part of SGP-1. Any major amendments will be filed as standalone
-  SGPs per Art. V.3.ii after this SGP-1 is ratified.
+  is not part of SGP-0001. Any major amendments will be filed as standalone
+  SGPs per Art. V.3.2 after this SGP-0001 is ratified.
 - **Activation timing** — ratification is binding the moment the Voting Period
   closes successfully. There is no formal "activation epoch" for a
   Constitution amendment; the document is immediately authoritative.
